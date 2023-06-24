@@ -94,6 +94,8 @@ public class BatteryManagerService extends Service {
                     dateTimeFormatter.format(LocalDateTime.now()),
                     acquireBatteryPercentage());
 
+//            -------------------------------------------------------------------
+            Log.i("BatteryService", "Battery service activated!");
             logger.log(info);
         }
     };

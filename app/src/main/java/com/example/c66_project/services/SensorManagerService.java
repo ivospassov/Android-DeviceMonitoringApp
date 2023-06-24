@@ -24,7 +24,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class SensorManagerService extends Service {
-    private final static String DROP_MESSAGE = "Device has fallen at: %s";
+    private final static String DROP_MESSAGE = "Device has fallen at: %s\n";
     private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy --- HH:mm:ss");
     private final Logger logger = new Logger(this);
 
@@ -78,16 +78,18 @@ public class SensorManagerService extends Service {
             float yValue = event.values[1];
             float zValue = event.values[2];
 
-            if (calculateTotalAcceleration(xValue, yValue, zValue) < 0.2) {
+            if (calculateTotalAcceleration(xValue, yValue, zValue) < 0.25) {
                 @SuppressLint("DefaultLocale") String message =
                         String.format(DROP_MESSAGE, dateTimeFormatter.format(LocalDateTime.now()));
+
                 logger.log(message);
+                Log.i("SensorService", "Sensor service activated!");
+                stopSelf();
             }
         }
 
         @Override
-        public void onAccuracyChanged(Sensor sensor, int accuracy) {
-        }
+        public void onAccuracyChanged(Sensor sensor, int accuracy) {}
     };
 
 
