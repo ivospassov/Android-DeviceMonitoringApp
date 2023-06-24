@@ -4,12 +4,12 @@ plugins {
 
 android {
     namespace 'com.example.c66_project'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.example.c66_project"
         minSdk 28
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
